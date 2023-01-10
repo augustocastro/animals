@@ -64,7 +64,7 @@ public class Animals {
 			
 			try {
 				int option = scanner.nextInt();
-				Object result = findByKey((Map<Option, Object>) object, option);
+				Object result = findByValue((Map<Option, Object>) object, option);
 				
 				if (result != null) {
 					if (result instanceof Map) {
@@ -86,7 +86,7 @@ public class Animals {
 	
 	
 	@SuppressWarnings("unchecked")
-	public  static Object findByKey(Map<Option, Object> map, int value) {
+	public  static Object findByValue(Map<Option, Object> map, int value) {
 		Optional<Entry<Option, Object>> optional = map
 				.entrySet().stream().filter(entry -> entry.getKey().value == value).findFirst();
 		
@@ -104,12 +104,11 @@ public class Animals {
 	}
 	
 	public static void printOptions(Map<Option, Object> map) {				
-		Map<Option,Object> sorted = map.entrySet().stream()
+		Map<Option, Object> sorted = map.entrySet().stream()
 				.sorted((e1, e2) -> Integer.compare(e1.getKey().value, e2.getKey().value))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2) -> e1, LinkedHashMap::new));
 		
-		sorted.entrySet()
-			.stream()
+		sorted.entrySet().stream()
 			.forEach(entry -> System.out.println(entry.getKey().value + " - " + entry.getKey().name));
 	}
 }
