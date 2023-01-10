@@ -20,6 +20,9 @@ class Option {
 	}
 }
 
+/**
+ * @author augustocastro
+ */
 public class Animals {
 	
 	@SuppressWarnings("serial")
